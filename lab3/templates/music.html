@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- 13331231 孙圣 lab3 music.html
+     额外功能：返回链接, 支持真正的.m3u播放列表文件, 随机顺序, 按大小排序 -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Music Viewer</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link href="http://www.cs.washington.edu/education/courses/cse190m/09sp/labs/3-music/viewer.css" type="text/css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!-- Extra Features: Back link -->
+		<a href="/"> Back </a>
+
+		<div id="header">
+
+			<h1>190M Music Playlist Viewer</h1>
+			<h2>Search Through Your Playlists and Music</h2>
+		</div>
+		
+		
+		<div id="listarea">
+			<ul id="musiclist">
+				{% for music in musicList %}
+					<li class="mp3item"> 
+						<a href="static/songs/{{ music.name }}"> {{ music.name }} </a>
+						(
+						 {% if music.size < 1023 %}
+						    {{ music.size }}b
+						 {% elif music.size < 1048575 %}
+						    <!-- round to two decimal places -->
+						    {{ "%.2f" % (float(music.size) / 1024) }}kb
+						 {% else %}
+							{{ "%.2f" % (float(music.size) / 1024 / 1024) }}mb
+						 {% end %}
+						 ) 
+					</li>
+				{% end %}
+			</ul>
+			
+			<ul id="playlist">
+				{% for playlist in playList %}
+					<li class="playlistitem"> 
+						<a href="?playlist={{ playlist }}"> {{ playlist }} </a>
+					</li>
+				{% end %}
+			<ul>
+		</div>
+	</body>
+</html>
