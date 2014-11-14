@@ -14,14 +14,14 @@
 			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/banner.png" alt="banner">
 		</div>
 
-		<h1>TMNT (2007)</h1>
+		<h1>{{ title }} ( {{ year }})</h1>
 		
 	 <div id="detail">
 
 	  <div id="right">
 
 		<div>
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/generaloverview.png" alt="generaloverview">
+			<img src="static/moviefiles/{{ moviename }}/generaloverview.png" alt="generaloverview">
 		</div>
 
 		<dl>
@@ -59,8 +59,9 @@
 
        <div id="top">
 		<div>
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rottenbig.png" alt="Rotten">
-			<span id="percent">32%</span> <span id="review">(88 reviews total)</span>
+			<img src="http://courses.cs.washington.edu/courses/cse190m/09sp/
+			homework/{{ bigpicurl }}" alt="bigpic">
+			<span id="percent">{{ rating }}%</span> <span id="review">(88 reviews total)</span>
 		</div>	
 	   </div>
 
@@ -149,7 +150,7 @@
 
 	  </div>
 
-		<p id="page">(1-8) of 88</p>
+		<p id="page">(1-8) of {{ reviewnum }}</p>
 
 	 </div>
 

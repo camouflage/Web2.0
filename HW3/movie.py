@@ -47,7 +47,30 @@ class MovieHandler(tornado.web.RequestHandler):
             get movie name and render the specific html
     """
     def get(self):
-        self.render("movie.html")
+        film = self.get_argument("film")
+        film_path = os.path.join(os.path.dirname(__file__), "static/moviefiles/" + film)
+        # file_list = os.listdir(film_path)
+
+        # read from info.txt
+        infofile = open(os.path.join(film_path, "info.txt"), 'r')
+        title = infofile.readline()
+        year = infofile.readline()
+        rating = infofile.readline()
+        reviewnum = infofile.readline()
+        # rating
+        if int(rating) < 60:
+            bigpicurl = "2/rottenbig.png"
+        else:
+            bigpicurl = "3/freshbig.png"
+
+        self.render("movie.html",
+                    moviename=film,
+                    title=title,
+                    year=year,
+                    rating=rating,
+                    reviewnum=reviewnum,
+                    bigpicurl=bigpicurl
+        )
 
 def main():
     """
