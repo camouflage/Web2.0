@@ -116,3 +116,10 @@ dt {
 	right: 0;
 	bottom: 0;
 }
+
+#choice li {
+	display: inline;
+	font-size: 20px;
+	padding: 0 3px;
+	border: solid white 2px;
+}

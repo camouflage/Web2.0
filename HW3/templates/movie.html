@@ -6,7 +6,7 @@
 		<title>TMNT - Rancid Tomatoes</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="{{ static_url("movie.css") }}" type="text/css" rel="stylesheet" />
-		<link rel="shortcut icon" href="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rotten.gif" type="image/gif" />
+		<link rel="shortcut icon" href="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/{{ shortcuticon }}" type="image/gif" />
 	</head>
 
 	<body>
@@ -14,8 +14,16 @@
 			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/banner.png" alt="banner">
 		</div>
 
+	 	<!-- choosing between pages -->
+		<ul id="choice">
+	 		<li> <a href="?film=princessbride"> princessbride </a> </li>
+		 	<li> <a href="?film=tmnt2"> tmnt2 </a> </li>
+	 		<li> <a href="?film=tmnt"> tmnt </a> </li>
+	 		<li> <a href="?film=mortalkombat"> mortalkombat </a> </li>
+	 	</ul>
+
 		<h1>{{ title }} ( {{ year }})</h1>
-		
+
 	 <div id="detail">
 
 	  <div id="right">
@@ -25,32 +33,10 @@
 		</div>
 
 		<dl>
-			<dt>STARRING</dt>
-			<dd>Mako <br /> Sarah Michelle Gellar</dd>
-
-			<dt>DIRECTOR</dt>
-			<dd>Kevin Munroe</dd>
-
-			<dt>RATING</dt>
-			<dd>PG</dd>
-
-			<dt>THEATRICAL RELEASE</dt>
-			<dd>Mar 23, 2007</dd>
-
-			<dt>MOVIE SYNOPSIS</dt>
-			<dd>After the defeat of their old arch nemesis, The Shredder, the Turtles have grown apart as a family.</dd>
-
-			<dt>MPAA RATING</dt>
-			<dd>PG, for animated action violence, some scary cartoon images and mild language</dd>
-
-			<dt>RELEASE COMPANY</dt>
-			<dd>Warner Bros.</dd>
-
-			<dt>GENRE</dt>
-			<dd>Action/Adventure, Comedies, Childrens, Martial Arts, Superheroes, Ninjas, Animated Characters</dd>
-
-			<dt>OFFICIAL MOVIE SITE</dt>
-			<dd><a href="http://www.tmnt.com/">The Official TMNT Site</a></dd>
+			{% for go in generaloverview %}
+			<dt>{{ go }}</dt>
+			<dd>{{ generaloverview[go] }}</dd>
+			{% end %}
 		</dl>
 
 	  </div>
@@ -61,96 +47,41 @@
 		<div>
 			<img src="http://courses.cs.washington.edu/courses/cse190m/09sp/
 			homework/{{ bigpicurl }}" alt="bigpic">
-			<span id="percent">{{ rating }}%</span> <span id="review">(88 reviews total)</span>
+			<span id="percent">{{ rating }}%</span> <span id="review">({{ reviewnum }} reviews total)</span>
 		</div>	
 	   </div>
 
 	   <div id="ll">
+	   	{% for review in leftlist %}
 		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rotten.gif" alt="rotten" class="im">
-			<q>Ditching the cheeky, self-aware wink that helped to excuse the concept's inherent corniness, the movie attempts to look polished and 'cool,' but the been-there animation can't compete with the then-cutting-edge puppetry of the 1990 live-action movie.</q>
+			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/{{ review.like }}" alt="review"class="im">
+			<q>{{ review.info }}</q>
 		</p>
 		<p class="info">
 			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Peter Debruge <br />
-			Variety
+			{{ review.name }} <br />
+			{{ review.where }}
 		</p>
-
-		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/fresh.gif" alt="fresh" class="im">
-			<q>TMNT is a fun, action-filled adventure that will satisfy longtime fans and generate a legion of new ones.</q>
-		</p>
-		<p class="info">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Todd Gilchrist <br />
-			IGN Movies
-		</p>
-
-		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rotten.gif" alt="rotten" class="im">
-			<q>It stinks!</q>
-		</p>
-		<p class="info">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Jay Sherman (unemployed)
-		</p>
-
-		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rotten.gif" alt="rotten" class="im">
-			<q>The rubber suits are gone and they've been redone with fancy computer technology, but that hasn't stopped them from becoming dull.</q>
-		</p>
-		<p class="info">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Joshua Tyler <br />
-			CinemaBlend.com
-		</p>
+		{% end %}
 	   </div>
 
 	   <div id="lr">
+		{% for review in rightlist %}
 		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rotten.gif" alt="rotten" class="im">
-			<q>The turtles themselves may look prettier, but are no smarter; torn irreparably from their countercultural roots, our superheroes on the half shell have been firmly co-opted by the industry their creators once sought to spoof.</q>
+			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/{{ review.like }}" alt="review" class="im">
+			<q>{{ review.info }}</q>
 		</p>
 		<p class="info">
 			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Jeannette Catsoulis <br />
-			New York Times
+			{{ review.name }} <br />
+			{{ review.where }}
 		</p>
-
-		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rotten.gif" alt="rotten" class="im">
-			<q>Impersonally animated and arbitrarily plotted, the story appears to have been made up as the filmmakers went along.</q>
-		</p>
-		<p class="info">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Ed Gonzalez <br />
-			Slant Magazine
-		</p>
-
-		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/fresh.gif" alt="fresh" class="im">
-			<q>The striking use of image and motion allows each sequence to leave an impression. It's an accomplished restart to this franchise.</q>
-		</p>
-		<p class="info">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Mark Palermo <br />
-			Coast (Halifax, Nova Scotia)
-		</p>
-
-		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/rotten.gif" alt="rotten" class="im">
-			<q>The script feels like it was computer generated. This mechanical presentation lacks the cheesy charm of the three live action films.</q>
-		</p>
-		<p class="info">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			Steve Rhodes <br />
-			Internet Reviews
-		</p>
+		{% end %}
 	   </div>
 
 	  </div>
 
-		<p id="page">(1-8) of {{ reviewnum }}</p>
+		<p id="page">(1-{{ pagereviewnum }}) of {{ reviewnum }}</p>
 
 	 </div>
 
