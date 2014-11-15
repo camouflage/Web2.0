@@ -17,11 +17,34 @@ define("port", default=8000, help="run on the given port", type=int)
 
 # class review
 class Review(object):
+    """
+        class Review
+    """
     def __init__(self, info, like, name, where):
         self.info = info
         self.like = like
         self.name = name
         self.where = where
+    def getinfo(self):
+        """
+        return info
+        """
+        return self.info
+    def getlike(self):
+        """
+        return like
+        """
+        return self.like
+    def getname(self):
+        """
+        return name
+        """
+        return self.name
+    def getwhere(self):
+        """
+        return where
+        """
+        return self.where
 
 # application configuration
 class Application(tornado.web.Application):
@@ -46,14 +69,15 @@ class MovieHandler(tornado.web.RequestHandler):
     """
     def get(self):
         film = self.get_argument("film")
-        film_path = os.path.join(os.path.dirname(__file__), "static/moviefiles/" + film)
+        film_path = os.path.join(os.path.dirname(__file__),
+                                 "static/moviefiles/" + film)
         # file_list = os.listdir(film_path)
 
         # read from info.txt
         infofile = open(os.path.join(film_path, "info.txt"), 'r')
         title = infofile.readline()
-        year = infofile.readline()
-        rating = infofile.readline()
+        year = infofile.readline().strip()
+        rating = infofile.readline().strip()
         reviewnum = infofile.readline()
         # rating
         if int(rating) < 60:
@@ -92,22 +116,22 @@ class MovieHandler(tornado.web.RequestHandler):
 
         # decide left or right
         leftlist = reviewlist[:len(reviewlist) / 2]
-        rightlist = reviewlist[len(reviewlist) / 2:]   
+        rightlist = reviewlist[len(reviewlist) / 2:]
 
         # render
         self.render(
-                    "movie.html",
-                    moviename=film,
-                    title=title,
-                    year=year,
-                    rating=rating,
-                    reviewnum=reviewnum,
-                    bigpicurl=bigpicurl,
-                    generaloverview=generaloverview,
-                    leftlist=leftlist,
-                    rightlist=rightlist,
-                    pagereviewnum=len(reviewlist),
-                    shortcuticon=shortcuticon
+            "movie.html",
+            moviename=film,
+            title=title,
+            year=year,
+            rating=rating,
+            reviewnum=reviewnum,
+            bigpicurl=bigpicurl,
+            generaloverview=generaloverview,
+            leftlist=leftlist,
+            rightlist=rightlist,
+            pagereviewnum=len(reviewlist),
+            shortcuticon=shortcuticon
         )
 
 def main():

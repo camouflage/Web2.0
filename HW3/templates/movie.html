@@ -22,7 +22,7 @@
 	 		<li> <a href="?film=mortalkombat"> mortalkombat </a> </li>
 	 	</ul>
 
-		<h1>{{ title }} ( {{ year }})</h1>
+		<h1>{{ title }} ({{ year }})</h1>
 
 	 <div id="detail">
 
@@ -34,6 +34,8 @@
 
 		<dl>
 			{% for go in generaloverview %}
+			<!-- in tmnt, the OFFICIAL MOVIE SITE section -->
+			{% autoescape None %}
 			<dt>{{ go }}</dt>
 			<dd>{{ generaloverview[go] }}</dd>
 			{% end %}
@@ -54,13 +56,13 @@
 	   <div id="ll">
 	   	{% for review in leftlist %}
 		<p class="quote">
-			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/{{ review.like }}" alt="review"class="im">
-			<q>{{ review.info }}</q>
+			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/{{ review.getlike() }}" alt="review"class="im">
+			<q>{{ review.getinfo() }}</q>
 		</p>
 		<p class="info">
 			<img src="http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/2/critic.gif" alt="critic" class="cim">
-			{{ review.name }} <br />
-			{{ review.where }}
+			{{ review.getname() }} <br />
+			{{ review.getwhere() }}
 		</p>
 		{% end %}
 	   </div>
