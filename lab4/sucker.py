@@ -22,6 +22,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", SuckerHandler),
+            (r"/info", InfoHandler)
         ]
         settings = dict(
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
@@ -38,9 +39,27 @@ class SuckerHandler(tornado.web.RequestHandler):
         self.render(
             "buyagrade.html"
         )
-        
-    def post(self):
-        
+
+    #def post(self):
+    #    self.redirect("/info")
+
+class InfoHandler(tornado.web.RequestHandler):
+    """
+        InfoHandler:
+            render the html
+    """
+    def get(self):
+        name = self.get_argument("name")
+        section = self.get_argument("section")
+        ccnum = self.get_argument("ccnum")
+        cc = self.get_argument("cc")
+        self.render(
+            "sucker.html",
+            name=name,
+            section=section,
+            ccnum=ccnum,
+            cc=cc
+        )
 
 def main():
     """

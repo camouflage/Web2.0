@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Buy Your Way to a Better Education!</title>
-		<link href="buyagrade.css" type="text/css" rel="stylesheet" />
+		<link href="{{ static_url("buyagrade.css") }}" type="text/css" rel="stylesheet" />
 	</head>
 
 	<body>
@@ -13,13 +13,13 @@
 
 		<dl>
 			<dt>Name</dt>
-			<dd>???</dd>
+			<dd>{{ name }}</dd>
 
 			<dt>Section</dt>
-			<dd>???</dd>
+			<dd>{{ section }}</dd>
 
 			<dt>Credit Card</dt>
-			<dd>???</dd>
+			<dd>{{ ccnum }}({{ cc }})</dd>
 		</dl>
 	</body>
 </html>  
