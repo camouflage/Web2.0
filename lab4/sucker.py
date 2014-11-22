@@ -40,9 +40,6 @@ class SuckerHandler(tornado.web.RequestHandler):
             "buyagrade.html"
         )
 
-    #def post(self):
-    #    self.redirect("/info")
-
 class InfoHandler(tornado.web.RequestHandler):
     """
         InfoHandler:
@@ -53,12 +50,29 @@ class InfoHandler(tornado.web.RequestHandler):
         section = self.get_argument("section")
         ccnum = self.get_argument("ccnum")
         cc = self.get_argument("cc")
+
+        if ( name == "" or section == "(Select a section)" or ccnum == "" or cc == num ):
+            self.render("error.html")
+            return
+
+        # write to file
+        infofile = open("suckers.txt", "a")
+        infofile.write(name + ';' + section + ';' + ccnum + 'j' + cc + '\n')
+        #infofile.write(";".join([name, section, ccnum, cc]) + '\n')
+        infofile.close()
+
+        # read from file
+        infofile = open("suckers.txt", "r")
+        info = infofile.read()
+        infofile.close()
+
         self.render(
             "sucker.html",
             name=name,
             section=section,
             ccnum=ccnum,
-            cc=cc
+            cc=cc,
+            info=info
         )
 
 def main():
