@@ -2,8 +2,8 @@
 """
 13331231 孙圣 lab4 sucker.py
 """
-
 import os.path
+import re
 
 import tornado.httpserver
 import tornado.ioloop
@@ -49,31 +49,54 @@ class InfoHandler(tornado.web.RequestHandler):
         name = self.get_argument("name")
         section = self.get_argument("section")
         ccnum = self.get_argument("ccnum")
-        cc = self.get_argument("cc")
+        creditcard = self.get_argument("cc")
 
         # check: fill in all the info
-        if ( name == "" or section == "(Select a section)" or ccnum == "" or cc == "none" ):
-            self.render("error.html",
-                        errormessage="You didn't fill out the form completely.")
+        if name == "" or section == "(Select a section)"\
+            or ccnum == "" or creditcard == "none":
+            self.render(
+                "error.html",
+                errormessage="You didn't fill out the form completely."
+            )
             return
 
         # check: valid ccnum
-        valid = True
-        valid = ccnum.isdigit() and len(ccnum) == 16
-        if cc == "visa":
-            valid = ccnum[0] == '4'
-        if cc == "mastercard":
-            valid = ccnum[0] == '5'
+        # using regex
+        if creditcard == "visa":
+            pattern = re.compile(r'^(4\d{3})(-\d{4}){3}|(4\d{15})$')
+            valid = pattern.match(ccnum)
+        if creditcard == "mastercard":
+            pattern = re.compile(r'^(5\d{3})(-\d{4}){3}|(5\d{15})$')
+            valid = pattern.match(ccnum)
 
-        #
+        # further validation: Luhn alg
+        if valid:
+            ccnumnodash = ccnum.replace("-", "")
+            count = 0
+            for i in range(16):
+                if i % 2 == 0:
+                    num = int(ccnumnodash[i]) * 2
+                    if num >= 10:
+                        count += 1 + num % 10
+                    else:
+                        count += num
+                else:
+                    count += int(ccnumnodash[i])
+
+            if count % 10 != 0:
+                valid = False
+
+        # render error
         if not valid:
-            self.render("error.html",
-                        errormessage="You didn't provide a valid card number.")
+            self.render(
+                "error.html",
+                errormessage="You didn't provide a valid card number."
+            )
             return
 
         # write to file
         infofile = open("suckers.txt", "a")
-        infofile.write(";".join([name, section, ccnum, cc]) + '\n')
+        infofile.write(";".join([name, section, ccnum, creditcard]) + '\n')
         infofile.close()
 
         # read from file
@@ -86,7 +109,7 @@ class InfoHandler(tornado.web.RequestHandler):
             name=name,
             section=section,
             ccnum=ccnum,
-            cc=cc,
+            cc=creditcard,
             info=info
         )
 
