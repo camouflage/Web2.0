@@ -51,14 +51,29 @@ class InfoHandler(tornado.web.RequestHandler):
         ccnum = self.get_argument("ccnum")
         cc = self.get_argument("cc")
 
-        if ( name == "" or section == "(Select a section)" or ccnum == "" or cc == num ):
-            self.render("error.html")
+        # check: fill in all the info
+        if ( name == "" or section == "(Select a section)" or ccnum == "" or cc == "none" ):
+            self.render("error.html",
+                        errormessage="You didn't fill out the form completely.")
+            return
+
+        # check: valid ccnum
+        valid = True
+        valid = ccnum.isdigit() and len(ccnum) == 16
+        if cc == "visa":
+            valid = ccnum[0] == '4'
+        if cc == "mastercard":
+            valid = ccnum[0] == '5'
+
+        #
+        if not valid:
+            self.render("error.html",
+                        errormessage="You didn't provide a valid card number.")
             return
 
         # write to file
         infofile = open("suckers.txt", "a")
-        infofile.write(name + ';' + section + ';' + ccnum + 'j' + cc + '\n')
-        #infofile.write(";".join([name, section, ccnum, cc]) + '\n')
+        infofile.write(";".join([name, section, ccnum, cc]) + '\n')
         infofile.close()
 
         # read from file
