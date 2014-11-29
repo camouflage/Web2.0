@@ -1,0 +1,18 @@
+Ada Lovelace,F,96,ISTJ,Linux,M,24,99
+Alan Turing,M,41,ESTP,other,M,31,50
+Anakin Skywalker,M,27,INTJ,Linux,F,15,30
+Bill Gates,M,52,INTJ,Windows,F,2,99
+Bill Joy,M,54,ENFP,other,F,50,70
+Deanna Troi,F,53,ENFJ,Mac OS X,MF,32,48
+Donald Knuth,M,70,INTJ,other,MF,12,17
+Grace Hopper,F,87,ISFP,Windows,M,17,60
+Lara Croft,F,23,ENTP,Linux,M,18,30
+Marty Stepp,M,28,ISTJ,Windows,F,18,45
+Ms Frizzle,F,39,ENTP,Mac OS X,F,19,49
+Natalie Portman,F,26,INFJ,Mac OS X,M,20,39
+River Tam,F,26,ENTJ,Linux,M,18,25
+Rosie O Donnell,F,46,ENFJ,Windows,F,30,50
+Seven of Nine,F,40,ISTJ,Windows,MF,12,50
+Stewie Griffin,M,1,INTP,Mac OS X,MF,1,59
+Stuart Reges,M,48,INFP,Mac OS X,M,18,35
+Valentina Tereshkova,F,71,ENTJ,Mac OS X,M,55,65

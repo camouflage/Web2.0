@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NerdLuv</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<link href="heart.gif" type="image/gif" rel="shortcut icon" />
+		<link href="{{ static_url("nerdluv.css") }}" type="text/css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="main">
+			<div id="bannerarea">
+				<img src="{{ static_url("nerdluv.png") }}" alt="banner logo" /> <br />
+				where meek geeks meet
+			</div>
+
+			<span id="formlabel">
+			New User Signup:
+			</span>
+
+			<form action="/result" method="post" id="form">
+			<div>
+				<strong>Name:</strong>
+				<input type="text" name="name" maxlength="16">
+			</div>
+			
+
+			<div>
+				<strong>Gender:</strong>
+				<input type="radio" name="gender" value="male">Male
+				<input type="radio" name="gender" value="female" checked>Female
+			</div>
+
+			<div>
+				<strong>Age:</strong>
+				<input type="text" name="age" size="5" maxlength="2">
+			</div>
+
+			<div>
+				<strong>Personality type:</strong>
+				<input type="text" name="personality" size="5" maxlength="4">
+				(<a href="http://www.humanmetrics.com/cgi-win/JTypes2.asp">Don't know your type?</a>)
+			</div>
+
+			<div>
+				<strong>Favorite OS:</strong>
+				<select name="os">
+					<option>Windows</option>
+					<option>Mac OS X</option>
+					<option>Linux</option>
+					<option>other</option>
+				</select>
+			</div>
+
+
+			<div id="seeking">
+				<strong>Seeking:</strong>
+				<label><input type="checkbox" name="seekingmale" checked>Male</lable>
+				<label><input type="checkbox" name="seekingmale">Female</lable>
+			</div>
+
+			<div>
+				<strong>Between ages:</strong>
+				<input type="text" name="lage" size="5" maxlength="2"> and
+				<input type="text" name="hage" size="5" maxlength="2">
+			</div>
+
+			<div>
+				<input type="submit" value="Sign Up">
+			</div>
+			</form>
+		</div>
+		
+		<p>
+			Results and page (C) Copyright 2009 NerdLuv Inc.
+		</p>
+
+		<div id="w3c">
+			<a href="http://validator.w3.org/check/referer">
+				<img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" /></a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer">
+				<img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS" /></a>
+		</div>
+	</body>
+</html>
+
+	

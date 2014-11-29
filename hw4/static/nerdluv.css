@@ -1,0 +1,89 @@
+/*
+CSE 190 M, Spring 2009, Marty Stepp
+Homework 4: NerdLuv
+Stylesheet for HTML forms / basic PHP program
+You should modify this stylesheet as necessary to reproduce the expected page.
+*/
+
+/* provided styles */
+
+* {
+	font-size: 12pt;
+	font-family: "Verdana", "Geneva", sans-serif;
+}
+
+body {
+	background-color: white;
+	padding: 1em;
+}
+
+#bannerarea {
+	margin-bottom: 2em;
+}
+
+div {
+	margin-top: 0.5em;
+}
+
+.info {
+	padding-left: 160px;
+}
+
+#main {
+	overflow: hidden;
+	width: 32em;
+}
+
+.match {
+	margin-bottom: 3em;
+}
+
+.name {
+	background-color: #E0E0FF;
+	clear: left;
+}
+
+.name img {
+	width: 150px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 3em;
+}
+
+#seeking {
+	margin-top: 2em;
+}
+
+#w3c {
+	clear: both;
+}
+
+#w3c img {
+	border-width: 0px;
+}
+
+
+/* your additional styles go here */
+#form {
+	width: 32em;
+	margin-left: 1em;
+	background-color: #E0E0FF;
+	border: 2px gray outset;
+}
+
+#formlabel {
+	background-color: white;
+	padding: 0.2em;
+	border: 2px gray outset;
+}
+
+#form div strong {
+	display: inline-block;
+	width: 11em;
+}
+
+input[type="submit"] {
+	background-color: #FFAAAA;
+	font-weight: bold;
+	font-size: 120%;
+}
