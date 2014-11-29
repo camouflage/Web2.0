@@ -35,15 +35,32 @@ class Single(object):
     """
         class Single storing info
     """
-    def __init__(self, name, gender, age, personality, os, seeking, lage, hage):
-        self.name = name
-        self.gender = gender
-        self.age = age
-        self.personality = personality
-        self.os = os
-        self.seeking = seeking
-        self.lage = lage
-        self.hage = hage
+    def __init__(self, infolist):
+        self.name = infolist[0]
+        # deal with the pic name
+        nameunderscore = self.name.lower()
+        nameunderscore = nameunderscore.replace(" ", "_")
+        nameunderscore += ".jpg"
+        pic_path = os.path.join(os.path.dirname(__file__), "static/images")
+        pic_list = os.listdir(pic_path)
+        if nameunderscore in pic_list:
+            self.nameunderscore = nameunderscore
+        else:
+            self.nameunderscore = "default_user.jpg"
+
+        self.gender = infolist[1]
+        self.age = infolist[2]
+        self.personality = infolist[3]
+        self.os = infolist[4]
+        # deal with seeking
+        self.seekingmale = False
+        self.seekingfemale = False
+        if "M" in infolist[5]:
+            self.seekingmale = True
+        if "F" in infolist[5]:
+            self.seekingfemale = True
+        self.lage = infolist[6]
+        self.hage = infolist[7]
 
 class IndexHandler(tornado.web.RequestHandler):
     """
@@ -69,20 +86,25 @@ class ResultHandler(tornado.web.RequestHandler):
         lage = self.get_argument("lage")
         hage = self.get_argument("hage")
 
-        # save to file
-        signuplist = [name, gender, age, personality, os, "".join(seeking), lage, hage]
-        singles = open("singles.txt", "a")
-        singles.write("\n" + ",".join(signuplist))
-        singles.close()
+        newsingleinfolist = [name, gender, age, personality, os, "".join(seeking), lage, hage]
+        newsingle = Singles(newsingleinfolist)
 
-        # read all singles from file
+        # read all other singles from file
         singles = open("singles.txt", "r")
+        singlelist = []
         for line in singles:
             line.strip()
             singlesinfolist = line.split(",")
-            
-
+            single = Single(singlesinfolist)
+            singlelist.append(single)
         singles.close()
+
+        # save the new single to file
+        singles = open("singles.txt", "a")
+        singles.write("\n" + ",".join(newsingleinfolist))
+        singles.close()
+
+        
         #self.render("results.html")
 
 
