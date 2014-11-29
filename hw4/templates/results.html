@@ -4,31 +4,32 @@
 		<title>NerdLuv</title>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<link href="heart.gif" type="image/gif" rel="shortcut icon" />
-		<link href="nerdluv.css" type="text/css" rel="stylesheet" />
+		<link href="{{ static_url("nerdluv.css") }}" type="text/css" rel="stylesheet" />
 	</head>
 
 	<body>
 		<div id="main">
 			<div id="bannerarea">
-				<img src="nerdluv.png" alt="banner logo" /> <br />
+				<img src="{{ static_url("nerdluv.png") }}" alt="banner logo" /> <br />
 				where meek geeks meet
 			</div>
 	
 			<div id="matches">
-				<h1>Matches for Marty Stepp</h1>
+				<h1>Matches for {{ name }}</h1>
 
+				{% for singles in suitablelist %}
 				<div class="match">
 					<p class="name">
-						<img src="images/ada_lovelace.jpg" alt="Ada Lovelace" />
-						Ada Lovelace 
+						<img src="{{ static_url("images/{{ nameunderscore }}.jpg ") }}" alt="{{ name }}" />
+						{{ name }}
 					</p>
 
 					<p class="info">
-						<strong>gender:</strong>  F <br />
-						<strong>age:</strong>     96 <br />
-						<strong>type:</strong>    ISTJ <br />
-						<strong>OS:</strong>      Linux <br />
-						<strong>rating:</strong>  4
+						<strong>gender:</strong>  {{ gender }} <br />
+						<strong>age:</strong>     {{ age }} <br />
+						<strong>type:</strong>    {{ personality}} <br />
+						<strong>OS:</strong>      {{ os }} <br />
+						<strong>rating:</strong>  {{ rating }}
 					</p>
 				</div>
 			</div>

@@ -22,6 +22,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", IndexHandler),
+            (r"/result", ResultHandler)
         ]
         settings = dict(
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
@@ -30,6 +31,19 @@ class Application(tornado.web.Application):
             )
         tornado.web.Application.__init__(self, handlers, **settings)
 
+class Single(object):
+    """
+        class Single storing info
+    """
+    def __init__(self, name, gender, age, personality, os, seeking, lage, hage):
+        self.name = name
+        self.gender = gender
+        self.age = age
+        self.personality = personality
+        self.os = os
+        self.seeking = seeking
+        self.lage = lage
+        self.hage = hage
 
 class IndexHandler(tornado.web.RequestHandler):
     """
@@ -39,6 +53,37 @@ class IndexHandler(tornado.web.RequestHandler):
         self.render(
             "index.html"
         )
+
+class ResultHandler(tornado.web.RequestHandler):
+    """
+        ResultHandler
+    """
+    def post(self):
+        # get info from query parameter
+        name = self.get_argument("name")
+        gender = self.get_argument("gender")
+        age = self.get_argument("age")
+        personality = self.get_argument("personality")
+        os = self.get_argument("os")
+        seeking = self.get_arguments("seeking")
+        lage = self.get_argument("lage")
+        hage = self.get_argument("hage")
+
+        # save to file
+        signuplist = [name, gender, age, personality, os, "".join(seeking), lage, hage]
+        singles = open("singles.txt", "a")
+        singles.write("\n" + ",".join(signuplist))
+        singles.close()
+
+        # read all singles from file
+        singles = open("singles.txt", "r")
+        for line in singles:
+            line.strip()
+            singlesinfolist = line.split(",")
+            
+
+        singles.close()
+        #self.render("results.html")
 
 
 def main():
