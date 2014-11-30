@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 13331231 孙圣 hw4 nerdLuv.py
+额外功能：服务器端表单验证
 """
 import os.path
 import re
@@ -95,6 +96,27 @@ class ResultHandler(tornado.web.RequestHandler):
         lage = self.get_argument("lage")
         hage = self.get_argument("hage")
 
+        # Extra Feature: server-side form validation
+        result = 1
+        # deal with name age
+        if name == "" or not age.isdigit()\
+           or not lage.isdigit() or not hage.isdigit() or int(lage) > int(hage):
+            result = 0
+        # deal with personality
+        pattern = re.compile(r"^[IE][NS][FT][JP]$")
+        if not pattern.match(personality):
+            result = 0
+        # deal with seeking
+        if len(seeking) == 0:
+            result = 0
+
+        if result == 0:
+            self.render(
+                "results.html",
+                result=result
+            )
+            return
+
         newsingleinfolist = [name, gender, age, personality, os, "".join(seeking), lage, hage]
         newsingle = Single(newsingleinfolist)
 
@@ -102,7 +124,9 @@ class ResultHandler(tornado.web.RequestHandler):
         singles = open("singles.txt", "r")
         singleslist = []
         for line in singles:
-            line.strip()
+            line = line.strip()
+            if line == "":
+                continue
             singlesinfolist = line.split(",")
             single = Single(singlesinfolist)
             singleslist.append(single)
@@ -120,7 +144,8 @@ class ResultHandler(tornado.web.RequestHandler):
                 append = False
             # deal with rating
             rating = 0
-            if newsingle.age >= single.lage and newsingle.age <= single.hage and single.age >= newsingle.lage and single.age <= newsingle.hage:
+            if newsingle.age >= single.lage and newsingle.age <= single.hage\
+               and single.age >= newsingle.lage and single.age <= newsingle.hage:
                 rating += 1
             if single.os == newsingle.os:
                 rating += 2
@@ -136,6 +161,7 @@ class ResultHandler(tornado.web.RequestHandler):
 
         self.render(
             "results.html",
+            result=result,
             name=name,
             suitablesingles=suitablesingles
         )

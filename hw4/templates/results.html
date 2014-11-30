@@ -13,14 +13,19 @@
 				<img src="{{ static_url("nerdluv.png") }}" alt="banner logo" /> <br />
 				where meek geeks meet
 			</div>
-	
+
+			{% if result == 0 %}
+			<p> Error: Invalid submission data. </p>
+			{% end %}
+
+			{% if result == 1 %}
 			<div id="matches">
 				<h1>Matches for {{ name }}</h1>
 
 				{% for singles in suitablesingles %}
 				<div class="match">
 					<p class="name">
-						<img src="static/images/{{ singles.nameunderscore }}" alt="{{ singles.name }}" />
+						<img src="{{ static_url("images/" + singles.nameunderscore) }}" alt="{{ singles.name }}" />
 						{{ singles.name }}
 					</p>
 
@@ -34,6 +39,7 @@
 				</div>
 				{% end %}
 			</div>
+			{% end %}
 		</div>
 		
 		<p>
