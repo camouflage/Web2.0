@@ -64,7 +64,7 @@ div {
 
 
 /* your additional styles go here */
-#form {
+.form {
 	width: 32em;
 	background-color: #E0E0FF;
 	border: 2px gray outset;
@@ -76,16 +76,16 @@ div {
 	border: 2px gray outset;
 }
 
-#form div strong {
+.form div strong {
 	display: inline-block;
 	width: 11em;
 }
 
-#form div {
+.form div {
 	margin-left: 1em;
 }
 
-#form span {
+.form span {
 	margin-left: 1em;
 	position: relative;
 	top: -0.5em;
@@ -96,4 +96,8 @@ input[type="submit"] {
 	font-weight: bold;
 	font-size: 120%;
 	margin-bottom: 0.5em;
+}
+
+#return {
+	margin-bottom: 1em;
 }

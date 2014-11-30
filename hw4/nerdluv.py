@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 13331231 孙圣 hw4 nerdLuv.py
-额外功能：服务器端表单验证
+额外功能：服务器端表单验证， Single类
 """
 import os.path
 import re
@@ -95,6 +95,8 @@ class ResultHandler(tornado.web.RequestHandler):
         seeking = self.get_arguments("seeking")
         lage = self.get_argument("lage")
         hage = self.get_argument("hage")
+        # Extra Feature: ability for returning users to view their matches
+        returnname = self.get_argument("returnname")
 
         # Extra Feature: server-side form validation
         result = 1

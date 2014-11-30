@@ -14,7 +14,22 @@
 				where meek geeks meet
 			</div>
 
-			<form action="/result" method="post" id="form">
+			<!-- Returning User -->
+			<form action="/result" method="post" class="form" id="return">
+			<span id="formlabel">
+				Returning User:
+			</span>
+			<div>
+				<strong>Name:</strong>
+				<input type="text" name="returnname" size="14" maxlength="16">
+			</div>
+			<div>
+				<input type="submit" value="View My Matches">
+			</div>
+			</form>
+
+			<!-- New User Signup -->
+			<form action="/result" method="post" class="form">
 			<span id="formlabel">
 				New User Signup:
 			</span>
