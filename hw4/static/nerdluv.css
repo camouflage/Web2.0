@@ -1,12 +1,6 @@
-/*
-CSE 190 M, Spring 2009, Marty Stepp
-Homework 4: NerdLuv
-Stylesheet for HTML forms / basic PHP program
-You should modify this stylesheet as necessary to reproduce the expected page.
-*/
+/* 13331231 孙圣 hw4 nerdluv.css */
 
 /* provided styles */
-
 * {
 	font-size: 12pt;
 	font-family: "Verdana", "Geneva", sans-serif;
@@ -70,7 +64,7 @@ div {
 	border: 2px gray outset;
 }
 
-#formlabel {
+.formlabel {
 	background-color: white;
 	padding: 0.2em;
 	border: 2px gray outset;

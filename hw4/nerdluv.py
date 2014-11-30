@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 13331231 孙圣 hw4 nerdLuv.py
-额外功能：服务器端表单验证， Single类
+额外功能：服务器端表单验证, 再次登陆的用户查看他们的匹配者, Single类
 """
 import os.path
 import re
@@ -23,7 +23,8 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", IndexHandler),
-            (r"/result", ResultHandler)
+            (r"/result", ResultHandler),
+            (r"/resultfromold", ResultFromOldHandler)
         ]
         settings = dict(
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
@@ -53,15 +54,6 @@ class Single(object):
         self.age = int(infolist[2])
         self.personality = infolist[3]
         self.os = infolist[4]
-        """
-        # deal with seeking
-        self.seekingmale = False
-        self.seekingfemale = False
-        if "M" in infolist[5]:
-            self.seekingmale = True
-        if "F" in infolist[5]:
-            self.seekingfemale = True
-        """
         self.seeking = infolist[5]
         self.lage = int(infolist[6])
         self.hage = int(infolist[7])
@@ -71,6 +63,49 @@ class Single(object):
             setrating
         """
         self.rating = rating
+
+def opensingles():
+    """
+        open singles.txt
+    """
+    singles = open("singles.txt", "r")
+    singleslist = []
+    for line in singles:
+        line = line.strip()
+        if line == "":
+            continue
+        singlesinfolist = line.split(",")
+        single = Single(singlesinfolist)
+        singleslist.append(single)
+    singles.close()
+    return singleslist
+
+def findsuitable(singleslist, newsingle):
+    """
+        find suitable person
+    """
+    suitablesingles = []
+    for single in singleslist:
+        append = True
+        if not (newsingle.gender in single.seeking and single.gender in newsingle.seeking):
+            append = False
+        # deal with rating
+        rating = 0
+        if newsingle.age >= single.lage and newsingle.age <= single.hage\
+           and single.age >= newsingle.lage and single.age <= newsingle.hage:
+            rating += 1
+        if single.os == newsingle.os:
+            rating += 2
+        for i in range(4):
+            if newsingle.personality[i] == single.personality[i]:
+                rating += 1
+        if rating < 3:
+            append = False
+
+        if append:
+            single.setrating(rating)
+            suitablesingles.append(single)
+    return suitablesingles
 
 class IndexHandler(tornado.web.RequestHandler):
     """
@@ -95,11 +130,16 @@ class ResultHandler(tornado.web.RequestHandler):
         seeking = self.get_arguments("seeking")
         lage = self.get_argument("lage")
         hage = self.get_argument("hage")
-        # Extra Feature: ability for returning users to view their matches
-        returnname = self.get_argument("returnname")
+
+        # read all other singles from file
+        singleslist = opensingles()
 
         # Extra Feature: server-side form validation
         result = 1
+        # deal with repetitive name
+        for single in singleslist:
+            if name == single.name:
+                result = 0
         # deal with name age
         if name == "" or not age.isdigit()\
            or not lage.isdigit() or not hage.isdigit() or int(lage) > int(hage):
@@ -112,6 +152,7 @@ class ResultHandler(tornado.web.RequestHandler):
         if len(seeking) == 0:
             result = 0
 
+        # render
         if result == 0:
             self.render(
                 "results.html",
@@ -122,49 +163,53 @@ class ResultHandler(tornado.web.RequestHandler):
         newsingleinfolist = [name, gender, age, personality, os, "".join(seeking), lage, hage]
         newsingle = Single(newsingleinfolist)
 
-        # read all other singles from file
-        singles = open("singles.txt", "r")
-        singleslist = []
-        for line in singles:
-            line = line.strip()
-            if line == "":
-                continue
-            singlesinfolist = line.split(",")
-            single = Single(singlesinfolist)
-            singleslist.append(single)
-        singles.close()
-
         # save the new single to file
         singles = open("singles.txt", "a")
         singles.write("\n" + ",".join(newsingleinfolist))
         singles.close()
 
-        suitablesingles = []
-        for single in singleslist:
-            append = True
-            if not (newsingle.gender in single.seeking and single.gender in newsingle.seeking):
-                append = False
-            # deal with rating
-            rating = 0
-            if newsingle.age >= single.lage and newsingle.age <= single.hage\
-               and single.age >= newsingle.lage and single.age <= newsingle.hage:
-                rating += 1
-            if single.os == newsingle.os:
-                rating += 2
-            for i in range(4):
-                if newsingle.personality[i] == single.personality[i]:
-                    rating += 1
-            if rating < 3:
-                append = False
+        # find result
+        suitablesingles = findsuitable(singleslist, newsingle)
 
-            if append:
-                single.setrating(rating)
-                suitablesingles.append(single)
-
+        # render
         self.render(
             "results.html",
             result=result,
             name=name,
+            suitablesingles=suitablesingles
+        )
+
+# Extra Feature: ability for returning users to view their matches
+class ResultFromOldHandler(tornado.web.RequestHandler):
+    """
+        ResultFromOldHandler
+    """
+    def post(self):
+        returnname = self.get_argument("returnname")
+        # read all singles from file
+        singleslist = opensingles()
+        result = 0
+        for single in singleslist:
+            if single.name == returnname:
+                oldsingle = single
+                result = 1
+
+        # render
+        if result == 0:
+            self.render(
+                "results.html",
+                result=result
+            )
+            return
+
+        # find result
+        suitablesingles = findsuitable(singleslist, oldsingle)
+
+        # render
+        self.render(
+            "results.html",
+            result=result,
+            name=oldsingle.name,
             suitablesingles=suitablesingles
         )
 
