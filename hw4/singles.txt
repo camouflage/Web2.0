@@ -16,17 +16,3 @@ Seven of Nine,F,40,ISTJ,Windows,MF,12,50
 Stewie Griffin,M,1,INTP,Mac OS X,MF,1,59
 Stuart Reges,M,48,INFP,Mac OS X,M,18,35
 Valentina Tereshkova,F,71,ENTJ,Mac OS X,M,55,65
-ss,F,3,1,other,M,1,2
-ss,F,3,1,other,MF,1,2
-ss,F,3,1,other,F,1,2
-213,F,1,2,Linux,M,1,20
-213,F,1,2,Linux,M,1,20
-213,F,1,2,Linux,M,1,20
-213,F,1,2,Linux,M,10,40
-213,F,1,2,Linux,M,10,40
-213,F,1,2,Linux,M,10,40
-213,F,1,2,Linux,M,10,40
-213,F,1,2,Linux,M,10,40
-213,F,1,2,Linux,M,10,40
-213,F,1,2,Linux,M,10,40
-213,F,1,2,Linux,M,10,40

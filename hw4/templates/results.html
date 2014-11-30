@@ -17,21 +17,22 @@
 			<div id="matches">
 				<h1>Matches for {{ name }}</h1>
 
-				{% for singles in suitablelist %}
+				{% for singles in suitablesingles %}
 				<div class="match">
 					<p class="name">
-						<img src="{{ static_url("images/{{ nameunderscore }}.jpg ") }}" alt="{{ name }}" />
-						{{ name }}
+						<img src="static/images/{{ singles.nameunderscore }}" alt="{{ singles.name }}" />
+						{{ singles.name }}
 					</p>
 
 					<p class="info">
-						<strong>gender:</strong>  {{ gender }} <br />
-						<strong>age:</strong>     {{ age }} <br />
-						<strong>type:</strong>    {{ personality}} <br />
-						<strong>OS:</strong>      {{ os }} <br />
-						<strong>rating:</strong>  {{ rating }}
+						<strong>gender:</strong>  {{ singles.gender }} <br />
+						<strong>age:</strong>     {{ singles.age }} <br />
+						<strong>type:</strong>    {{ singles.personality}} <br />
+						<strong>OS:</strong>      {{ singles.os }} <br />
+						<strong>rating:</strong>  {{ singles.rating }}
 					</p>
 				</div>
+				{% end %}
 			</div>
 		</div>
 		

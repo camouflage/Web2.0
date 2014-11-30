@@ -49,9 +49,10 @@ class Single(object):
             self.nameunderscore = "default_user.jpg"
 
         self.gender = infolist[1]
-        self.age = infolist[2]
+        self.age = int(infolist[2])
         self.personality = infolist[3]
         self.os = infolist[4]
+        """
         # deal with seeking
         self.seekingmale = False
         self.seekingfemale = False
@@ -59,8 +60,16 @@ class Single(object):
             self.seekingmale = True
         if "F" in infolist[5]:
             self.seekingfemale = True
-        self.lage = infolist[6]
-        self.hage = infolist[7]
+        """
+        self.seeking = infolist[5]
+        self.lage = int(infolist[6])
+        self.hage = int(infolist[7])
+
+    def setrating(self, rating):
+        """
+            setrating
+        """
+        self.rating = rating
 
 class IndexHandler(tornado.web.RequestHandler):
     """
@@ -87,16 +96,16 @@ class ResultHandler(tornado.web.RequestHandler):
         hage = self.get_argument("hage")
 
         newsingleinfolist = [name, gender, age, personality, os, "".join(seeking), lage, hage]
-        newsingle = Singles(newsingleinfolist)
+        newsingle = Single(newsingleinfolist)
 
         # read all other singles from file
         singles = open("singles.txt", "r")
-        singlelist = []
+        singleslist = []
         for line in singles:
             line.strip()
             singlesinfolist = line.split(",")
             single = Single(singlesinfolist)
-            singlelist.append(single)
+            singleslist.append(single)
         singles.close()
 
         # save the new single to file
@@ -104,9 +113,32 @@ class ResultHandler(tornado.web.RequestHandler):
         singles.write("\n" + ",".join(newsingleinfolist))
         singles.close()
 
-        
-        #self.render("results.html")
+        suitablesingles = []
+        for single in singleslist:
+            append = True
+            if not (newsingle.gender in single.seeking and single.gender in newsingle.seeking):
+                append = False
+            # deal with rating
+            rating = 0
+            if newsingle.age >= single.lage and newsingle.age <= single.hage and single.age >= newsingle.lage and single.age <= newsingle.hage:
+                rating += 1
+            if single.os == newsingle.os:
+                rating += 2
+            for i in range(4):
+                if newsingle.personality[i] == single.personality[i]:
+                    rating += 1
+            if rating < 3:
+                append = False
 
+            if append:
+                single.setrating(rating)
+                suitablesingles.append(single)
+
+        self.render(
+            "results.html",
+            name=name,
+            suitablesingles=suitablesingles
+        )
 
 def main():
     """
