@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- 13331231 孙圣 test2 ask.html -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{{ title }}</title>
+	<link rel="stylesheet" href="{{static_url("css/index.css")}}">
+    <link rel="stylesheet" href="{{static_url("css/ask.css")}}">
+    <link rel="shortcut icon" href="//static.segmentfault.com/global/img/favicon.30f7204d.ico">
+</head>
+<body>
+	<div id="header">
+		<nav class="container">
+			<h1 class="logo">
+				<a href="/">
+					<img src="{{static_url("images/home-logo.svg")}}" alt="SegmentFault">				
+				</a>
+			</h1>
+			<ul>
+				{% if not name %}
+					<li>
+						<a href="/signup">注册</a>
+					</li>
+					<li>
+						<a href="/login">直接登录</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="#">{{name}}</a>
+					</li>
+					<li>
+						<a href="/logout">退出</a>
+					</li>
+				{% end if %}
+			</ul>
+		</nav>
+	</div>
+	<div class="container">
+		<h1 class="h4">提问题</h1>
+		<form id="question" method="post">
+            <div class="form-group">
+                <input id="myTitle" type="text" name="title" class="form-control tagClose input-lg" placeholder="标题：一句话说清你遇到的开发问题" value="">
+            </div>
+            <div class="input-group">
+                <input type="text" class="tagText empty form-control input-sm" placeholder="标签，如：php" name="tags">            
+            </div>
+            <div class="form-group">
+            	<textarea rows="12" cols="113" class="quest-text" name="content">
+				</textarea>
+            </div>
+            <button data-type="question" id="publishIt" class="btn btn-primary btn-lg ml20" data-bid="" data-id="" data-do="" data-url="" data-text="发布问题" data-name="">
+                发布问题
+            </button>
+        </form>
+	</div>
+</body>
+</html>

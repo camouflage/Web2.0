@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- 13331231 孙圣 pretest2 blog.html -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>blog</title>
+	</head>
+
+	<body>
+		<h1> {{ title }} </h1>
+		<h2> {{ author }} </h2>
+		<p> {{ article }} </p>
+		<br>
+
+		{% if login == 1 %}
+			{{ user }}
+			<form action="{{ url }}" method="post">
+				<textarea name="comment" rows="8" cols="20"></textarea>
+				<input type="submit" value="commit">
+			</form>
+			<form action="/logout" method="post">
+				<input type="submit" value="logout">
+			</form>
+		{% end %}
+
+	</body>
+</html>

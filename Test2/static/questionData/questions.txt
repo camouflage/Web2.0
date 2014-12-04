@@ -1,0 +1,13 @@
+0;2;回答;85;make;2分钟前回答;加速传感器摇一摇老是检测到摇了两次，怎么能让它在1s内一次有效;android,传感器
+-1;0;回答;17;Dophin;27分钟前提问;jquery、zepto如何将对象集合的某个属性生成一个集合？;javascript;
+0;0;回答;22;王道中强流;29分钟前提问;php-fig psr-3 日志接口 怎么理解？monolog有什么牛逼之处？;php,psr,monolog
+1;9;解决;391;SCRD;43分钟前回答;目前使用 PHP，请过来人指点下 JavaScript 和 Python;javascript,python,程序员
+0;14;回答;2.6k;rockybean;43分钟前回答;你写过的最屌的代码是什么?;code,编程,程序设计师
+0;0;回答;9;womenshuo;2分钟前提问;github支付不成功问题;git,github
+3;65;回答;10.8k;demolee;11月12日回答;作为IT人员必须知道哪些社区;社区,it,程序员
+-1;19;解决;1.4k;hao615;4天前回答;用工作时间学习新东西，还是下班时间学习呢？;学习。时间规划
+0;5;回答;375;cho;10月7日回答;typecho怎样导入百度hi的数据?;typecho
+0;6;回答;336;颜海镜;49分钟前回答;js 中的 isNaN([1]) 为什么返回false;javascript
+0;0;回答;0;ss;刚刚;好多问题;test
+0;0;回答;0;admin;刚刚;更多问题;python,tor
+0;0;回答;0;ss;刚刚;非常多问题;html,css

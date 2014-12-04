@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- 13331231 孙圣 test2 index.html -->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ static_url("css/index.css") }}">
+    <link rel="shortcut icon" href="//static.segmentfault.com/global/img/favicon.30f7204d.ico">
+</head>
+<body>
+	<div id="header">
+		<nav class="container">
+			<h1 class="logo">
+				<a href="/">
+					<img src="{{ static_url("images/home-logo.svg") }}" alt="SegmentFault">				
+				</a>
+			</h1>
+			<ul>
+				<!-- 未登录 -->
+				{% if login == 0 %}
+				<li>
+					<a href="/signup">注册</a>
+				</li>
+				<li>
+					<a href="/login">直接登录</a>
+				</li>
+				{% end %}
+				<!-- 已登录 -->
+				{% if login == 1 %}
+				<li>
+					<a href="/">{{ name }}</a>
+				</li>
+				<li>
+					<a href="/logout"> 退出 </a>
+				</li>
+				{% end %}
+			</ul>
+		</nav>
+	</div>
+	<div class="container" id="wrapper">
+		<p class="main-title">
+            今天，你在开发时遇到了什么问题呢？
+            <a id="goAsk" href="/ask">我要提问</a>
+        </p>
+
+        {% for dict in questiondictlist %}
+        <div class="question-list">
+        	<section class="stream-list__item">
+                <div class="qa-rank">
+		            <div
+		            	{% if dict["vote"] > 0 %}
+		            		class = "votes hidden-xs plus"
+		            	{% end %}
+		            	{% if dict["vote"] == 0 %}
+		            		class = "votes hidden-xs"
+		            	{% end %}
+		            	{% if dict["vote"] < 0 %}
+		            		class = "votes hidden-xs minus"
+		            	{% end %}
+		            >
+		                {{ dict["vote"] }}
+		                <br />
+		                <small>投票</small>
+		            </div>
+		            <div 
+		            	{% if dict["status"] == "解决" %}
+		            		class = "answers answered solved"
+		            	{% end %}
+		            	{% if dict["status"] == "回答" and dict["answer"] == 0 %}
+		            		class = "answers"
+		            	{% end %}
+		            	{% if dict["status"] == "回答" and dict["answer"] > 0 %}
+		            		class = "answers answered"
+		            	{% end %}
+		            >
+		            	{{ dict["answer"] }}
+		                <br />
+		                <small>{{ dict["status"] }}</small>
+		            </div>
+		            <div class="views hidden-xs">
+		                {{ dict["read"] }}
+		                <br />
+		                <small>浏览</small>
+		            </div>
+		        </div>
+		        <div class="summary">
+		            <ul class="author list-inline">
+		                <li>
+		                    <a href="#">{{ dict["author"] }}</a>
+		                    <span class="split"></span>
+		                    <a href="#">{{ dict["time"] }}</a>
+		                </li>
+		            </ul>
+		            <h2 class="title"><a href="#">{{ dict["content"] }}</a></h2>
+		            <ul class="taglist--inline ib"> 
+		            	{% for tag in dict["tag"] %}
+		                <li class="tagPopup">
+		                	<a class="tag tag-sm" href="#">{{ tag }}
+		                	</a>
+		                </li>
+		                {% end %}
+		            </ul>
+		        </div>
+		    </section>
+        </div>
+        {% end %}
+	</div>
+</body>
+</html>

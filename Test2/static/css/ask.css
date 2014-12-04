@@ -1,0 +1,43 @@
+.h4 {
+	margin-top: 20px;
+	font-size: 18px;
+	margin-bottom: 10.5px;
+}
+.form-control {
+	display: block;
+	width: 95%;
+}
+.input-lg, .input-sm {
+	height: 24px;
+	padding: 10px 16px;
+	font-size: 18px;
+	line-height: 1.33;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+}
+.input-sm {
+	margin-top: 30px;
+	width: 150px;
+	height: 10px;
+}
+.quest-text {
+	margin-top: 30px;
+	color: #333;
+	font-size: 18px;
+}
+
+.btn-primary{
+	border-color: #007147;
+	background-color: #008151;
+	box-shadow: none;
+	background-image: linear-gradient(to bottom, #009a61 0%, #00905b 100%);
+	background-repeat: repeat-x;
+	outline: none;
+	padding: 10px 16px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	color: #fff;
+	float: right;
+	margin-right: 15px;
+	margin-top: 10px;
+}

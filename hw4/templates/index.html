@@ -30,7 +30,7 @@
 			</form>
 
 			<!-- New User Signup -->
-			<form action="/result" method="post" class="form">
+			<form action="/result" method="post" enctype="multipart/form-data" class="form">
 			<span class="formlabel">
 				New User Signup:
 			</span>
@@ -67,11 +67,15 @@
 				</select>
 			</div>
 
+			<div>
+				<strong>Photo:</strong>
+				<input type="file" name="photo">
+			</div>
 
 			<div id="seeking">
 				<strong>Seeking:</strong>
-				<label><input type="checkbox" name="seeking" value="M" checked>Male</lable>
-				<label><input type="checkbox" name="seeking" value="F">Female</lable>
+				<label><input type="checkbox" name="seeking" value="M" checked>Male</label>
+				<label><input type="checkbox" name="seeking" value="F">Female</label>
 			</div>
 
 			<div>

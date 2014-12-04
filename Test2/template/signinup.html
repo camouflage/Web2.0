@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- 13331231 孙圣 test2 signup.html -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ static_url("css/sign.css") }}">
+    <link rel="shortcut icon" href="//static.segmentfault.com/global/img/favicon.30f7204d.ico">
+</head>
+<body>
+	<div id="header" class="container">
+            <a href="/" class="logo">
+                <img src="{{ static_url("images/logo.png") }}" alt="SegmentFault">
+            </a>
+        <p class="description text-muted">欢迎加入最专业的中文开发者社区</p>
+    </div>
+    <div id="main" class="container">
+      <div>
+        <h1>{{ registerTitle }}</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="name" class="required">用户名: </label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="字母、数字等，用户名唯一">
+            </div>
+            <div>
+                <label for="password">密码: </label>
+                <input type="password" id="password" name="password" placeholder="不少于 6 位">
+            </div>
+            <div>
+                <button type="submit" id="submit">{{ register }}</button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div id="footer" class="container">
+        {% if login == "账号登录" %}
+            <a href="/login" class="footer-link">{{ login }}</a>
+        {% end %}
+        {% if login == "账号注册" %}
+            <a href="/signup" class="footer-link">{{ login }}</a>
+        {% end %}
+        <a href="/" class="footer-link">首页</a>
+    </div>
+</body>
+</html>

@@ -57,6 +57,7 @@ class Single(object):
         self.seeking = infolist[5]
         self.lage = int(infolist[6])
         self.hage = int(infolist[7])
+        self.rating = 0
 
     def setrating(self, rating):
         """
@@ -87,7 +88,8 @@ def findsuitable(singleslist, newsingle):
     suitablesingles = []
     for single in singleslist:
         append = True
-        if not (newsingle.gender in single.seeking and single.gender in newsingle.seeking):
+        if not (newsingle.gender in single.seeking\
+                and single.gender in newsingle.seeking):
             append = False
         # deal with rating
         rating = 0
@@ -160,8 +162,12 @@ class ResultHandler(tornado.web.RequestHandler):
             )
             return
 
-        newsingleinfolist = [name, gender, age, personality, os, "".join(seeking), lage, hage]
+        newsingleinfolist = [name, gender, age, personality,\
+                             os, "".join(seeking), lage, hage]
         newsingle = Single(newsingleinfolist)
+
+        print self.request.files
+
 
         # save the new single to file
         singles = open("singles.txt", "a")
