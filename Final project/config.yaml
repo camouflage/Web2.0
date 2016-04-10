@@ -1,0 +1,7 @@
+name: forum423423
+version: 1
+
+
+handlers:
+- url: /static/
+  static_path: static

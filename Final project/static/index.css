@@ -1,0 +1,77 @@
+body {
+    width: 100%;
+    margin: 0;
+    background-image:url("../static/images/indexbackground.jpg");
+}
+#header{
+  padding-top:2%;
+}
+#signup{
+  float: right;
+}
+#header{
+  /*background-color: #009a61;*/
+}
+
+#left-up {
+    display: inline;
+}
+#new{
+  border: 2px solid  none;
+}
+#intro{
+  margin-top:10px;
+  border-bottom:1px solid #8C8C00;
+  padding-bottom: 3%;
+}
+
+#ask {
+  border-color: #008b57;
+  background-color: #009a61;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 3px;
+    margin-top: 3%;
+}
+
+.article {
+   border: 1px solid #8C8C00;
+    border-top:none;
+    border-right:none;
+    border-left:none;
+    margin-top:1%;
+}
+.info{
+   /*position: relative;
+   left: 65%;
+   width:auto;*/
+    margin-left: 70%;
+   display: inline-block;
+}
+.right{
+ text-align:center;
+}
+
+.content {
+    margin-bottom: 0;
+}
+.a{
+   /*background-color:#FCFCFC;*/
+    color:#9D9D9D;
+ }
+.newadd1{
+   border-color: #008b57;
+   background-color: #009a61;
+  color: #fff;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}

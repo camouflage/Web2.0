@@ -1,0 +1,76 @@
+/* 
+CSE 190 M, Spring 2009, Marty Stepp
+style sheet for Homework 5: ASCIImation
+*/
+
+a img {
+	border: 0;
+}
+
+body, html {
+	background-color: #CCCCFF;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+body, button, select, option, input, label {
+	font-family: monospace,sans-serif;
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+div {
+	text-align: center;
+}
+
+/* gallery of other students' asciimations */
+#gallery {
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100px;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0em;
+	padding: 0px;
+	text-align: center;
+	font-family:monospace,san-serif;
+}
+
+#votes {
+    position: absolute;
+    left: 100px;
+    top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#w3c {
+	margin-top: 0.5em;
+	text-align: right;
+}
+
+/* your styles go here */
+
+#displayarea {
+	border: 0px;
+	font-size: 12pt;
+	font-weight: bold;
+	height: 400px;
+	width: 90%;
+	font-family: monospace, san-serif;
+}
+
+fieldset {
+	display: inline;
+	border: 5px solid black;
+
+}
+
+legend{
+	font-family: monospace, san-serif;
+}

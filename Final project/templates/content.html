@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> content </title>
+        <meta charset="utf-8">
+        <link href="{{ static_url('main.css') }}" type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <script src="{{static_url('jquery-1.11.2.min.js')}}" type="text/javascript"></script>
+    	<script src="{{static_url('vote.js')}}" type="text/javascript"></script>
+    </head>
+
+    <body>
+        <div id="info">
+            <a href="/"> <span class="newadd2">返回</span> </a>
+            <div id="signup">
+                {% if login == 0 %}
+                    <a href="/signup"><span class="newadd2">注册</span></a>
+                    <a href="/login"><span class="newadd2">登录</span></a>
+                {% end %}
+                {% if login == 1 %}
+                    <a href="/"><span class="newadd2">{{ name }}</span></a>
+                    <a href="/logout"><span class="newadd2">退出</span></a>
+                {% end %}
+            </div>
+        </div>
+        <br>
+
+        <div id="header">
+            <div id="title"> {{ title }} </div>
+            <!-- <span id="time"> time </span> -->
+            <span id="situation"> {{ ans_num }} <img id="img" src="../static/images/mainrespond.jpg" alt="pic" width="20px" height="20px"> 
+                {{ view_num }}<img id="img" src="../static/images/mainscan.png" alt="pic" width="20px" height="20px"> </span>
+        </div>
+
+        {% for floor in floorList %}
+        <div class="content">
+            <div class="basicinfo">
+                <span class="name"><strong>{{ floor.writer }}</strong> </span>
+                  <div class="newadd">
+                {% if floor.floor_id == 1 %}
+                    <span class="floor">楼主 </span>
+                {% end %}
+                {% if floor.floor_id > 1 %}
+                <span class="floor"> {{ floor.floor_id }}楼 </span>
+                {% end %}
+                <span class="vote">
+                    <form method="post">
+                        <input type="text" class="fid" name="fid" value="{{ floor.floor_id}}">
+                    	<button type="submit" class="submit" id="{{ floor.floor_id }}"> 赞({{ floor.num_vote }}) </button>
+                    </form>
+                </span>
+                </div>
+            </div>
+            <div class="real">
+                <p> {{ floor.content }} </p>
+            </div>
+        </div>
+        {% end %}
+         <div class="add3">
+        <a href="/respond{{number_of_article}}" id="answer"> 回复 </a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+h1 {
+	color: red;
+	background-color: green;
+}
+
+h2 {
+	color: blue;
+}
+
+p {
+	font-size: 15pt;
+}
+
+li {
+	font-weight: 800;
+}
+
+body {
+	background-color: yellow;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+p:first-letter {
+	font-size: 150%;
+}
+
+
+ol.reverse {
+	list-style: none;
+	counter-reset: reverse 4;
+}
+
+ol.reverse > li:before {
+	content: counter(reverse) '.';
+	position: absolute;
+	left: -30px;
+}
+
+ol.reverse > li {
+	counter-increment: reverse -1;
+	position: relative;
+}

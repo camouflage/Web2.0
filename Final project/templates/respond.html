@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>回复帖子</title>
+	<link rel="stylesheet" href="{{ static_url('ask.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+
+<body>
+	<div id="header">
+        <span class="logo">
+            <a href="/"><img src="../static/images/askimg.jpg" alt="pic" width="35%" height="8%"></a>
+		</span>
+				<span class="newadd">
+					<a href="#">{{ user }}</a>
+				</span>
+				<span class="newadd">
+					<a href="/logout">退出</a>
+			   </span>
+	</div>
+	<div class="container">
+		<form id="newpost" method="post" action="/{{number_of_article}}">
+            <div class="newcontent">
+            	<textarea rows="12" cols="37" class="quest-text" name="content" maxlength="144">
+				</textarea>
+            </div>
+            <button data-type="question" id="publishNP" class="fabu" data-text="发表回复" data-name="">
+                确认
+            </button>
+        </form>
+	</div>
+</body>
+</html>

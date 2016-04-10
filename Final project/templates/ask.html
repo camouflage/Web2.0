@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="{{ static_url('ask.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="{{static_url('jquery-1.11.2.min.js')}}" type="text/javascript"></script>
+    <script src="{{static_url('ask.js')}}" type="text/javascript"></script>
+</head>
+<!--
+<body>
+	<div id="header">
+		<nav class="container">
+			<h1 class="logo">
+				<a href="/">
+					<img src="home-logo.svg" alt="SegmentFault">				
+				</a>
+			</h1>
+			<ul>
+					<li>
+						<a href="/signup">注册</a>
+					</li>
+					<li>
+						<a href="/login">直接登录</a>
+					</li>
+					<li>
+						<a href="#">user</a>
+					</li>
+					<li>
+						<a href="/logout">退出</a>
+					</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="container">
+		<h1 class="h4">发帖</h1>
+		<form id="newpost" method="post" action="/ask">
+            <div class="newtitle">
+                <input id="myTitle" type="text" name="title" class="form-control tagClose input-lg" placeholder="你的标题" value="">
+            </div>
+
+            <div class="newcontent">
+            	<textarea rows="12" cols="113" class="quest-text" name="content">
+				</textarea>
+            </div>
+            <button data-type="question" id="publishNP" class="btn btn-primary btn-lg ml20" data-bid="" data-id="" data-do="" data-url="" data-text="发布问题" data-name="">
+                发布问题
+            </button>
+                </div>
+            </div>
+        </form>
+	</div>
+</body>
+-->
+
+<body>
+	<div id="header">
+		<span class="logo">
+				<img src="../static/images/askimg.jpg" alt="dog" width="160px" height="70px">
+		</span>
+			{% if iflogin == 1 %}
+				<span class="newadd">
+					<a href="#">{{ user }}</a>
+				</span>
+				<span class="newadd">
+					<a href="/logout">退出</a>
+			   </span>
+			{% else %}
+				<span class="newadd">
+					<a href="/signup">注册</a>
+				</span>
+				<span class="newadd">
+					<a href="/login">直接登录</a>
+				</span>
+			{% end %}
+	</div>
+	<div class="container">
+		<form id="newpost" method="post" action="/ask">
+            <div class="newtitle">
+                <input id="myTitle" type="text" name="title" class="biaoti" placeholder="你的标题" value=""maxlength="20">
+            </div>
+            <div class="newcontent">
+            	<textarea  id="content" rows="12" cols="37" class="quest-text" name="content" maxlength="144">
+				</textarea>
+            </div>
+            <button data-type="question" id="publishNP" class="fabu" data-text="发布问题" data-name="">
+                发贴
+            </button>
+        </form>
+	</div>
+</body>
+</html>

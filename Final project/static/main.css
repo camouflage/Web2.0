@@ -1,0 +1,72 @@
+body {
+    width: 100%;
+    margin: 0;
+    background-image:url("../static/images/indexbackground.jpg");
+}
+
+#userinfo {
+    float: right;
+}
+#info {
+    width:100%;
+	display: inline-block;
+    margin-top: 2px;
+}
+/* header */
+#signup{
+ float:right;
+}
+#header {
+	border-bottom: 1px grey solid;
+    margin-top: 5%;
+}
+
+#title {
+    text-align: center;
+}
+
+#situation {
+    margin-left: 75%;
+    color:gray;
+   
+}
+.newadd{
+ float: right;   
+}
+
+/* content */
+.content {
+    border-bottom: 1px grey solid;
+    margin: 1%;
+    
+}
+.newadd2{
+   border-color: #008b57;
+   background-color: #009a61;
+  color: #fff;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 10%;
+}
+#answer {
+    border-color: #008b57;
+   background-color: #009a61;
+  color: #fff;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+.add3{
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+}
+.fid {
+    display: none
+}

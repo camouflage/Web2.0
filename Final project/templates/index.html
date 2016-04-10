@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> forum423 </title>
+    <link rel="stylesheet" href="{{ static_url('index.css') }}">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <script src="{{static_url('jquery-1.11.2.min.js')}}" type="text/javascript"></script>
+    <script src="{{static_url('index.js')}}" type="text/javascript"></script>
+</head>
+    
+<body>
+	<div id="header">
+		<strong>Mood</strong>
+		<select id="moodselect" name="moodß">
+			<option>Good</option>
+			<option>General</option>
+			<option>Bad</option>
+		</select>
+		<img id="img" src="../static/images/moodhtml.gif" alt="pic" width="30px" height="30px">
+
+		<div id="signup">
+            {% if login == 0 %}
+            <a href="/signup"><span class="newadd1">注册</span></a>
+				<a href="/login"><span class="newadd1">登录</span></a>
+            {% end %}
+            {% if login == 1 %}
+            	<a href="/"><span class="newadd1">{{ name }}</span></a>
+				<a href="/logout"><span class="newadd1">退出</span></a>
+            {% end %}
+		</div>
+	</div>
+    <div id="intro">
+        <span id="new">今天都遇到什么新鲜事呢？来和大家分享吧</span>
+        <a id="ask" href="/ask">发帖</a>
+    </div>
+    {% for art in articleList %}
+    <div class="article">
+        <p class="content"> <a href="/{{ art.article_id }}">{{ art.title }} </a> </p>
+        <div class="info">
+            <span class="writer"><img id="img" src="../static/images/indexuser.png" alt="pic" width="20px" height="20px"> <span class="a">{{ art.article_writer }} </span></span>
+            <span class="vote"><img id="img" src="../static/images/indexscan.png" alt="pic" width="20px" height="20px"> <span class="a">{{ art.scan }} </span></span>
+        </div>
+    </div>
+    {% end %}
+
+    <p class="right"> 至善423 All Rights Reserved.</p>
+</body>
+</html>

@@ -1,0 +1,118 @@
+/* 13331231 孙圣 HW2 movie.css */
+body {
+	background-image: url(images/background.png);
+	font-size: 8pt;
+	font-family: Verdana, Tahoma, Geneva, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+#banner {
+	background-image: url(images/bannerbackground.png);
+	background-repeat: repeat-x;
+}
+
+h1 {
+	text-align: center;
+	font-size: 24pt;
+	font-weight: bold;
+	font-family: Tahoma, Verdana, Geneva, sans-serif;
+}
+
+#detail {
+	width: 800px;
+	margin: 0 auto;
+	border: 4px gray solid;
+	overflow: hidden;
+}
+
+#left {
+	width: 550px;
+	float: left;
+}
+
+#right {
+	width: 250px;
+	float: right;
+    background-color: #A2B964;
+}
+
+#top {
+	background-image: url(images/rottenbackground.png);
+	background-repeat: repeat-x;
+}
+
+#percent {
+    font-size: 48pt;
+	color: red;
+	font-weight: bold;
+	vertical-align: 15%;
+}
+
+#review{
+	color: white;
+	vertical-align: 110%;
+}
+
+#ll {
+	margin-left: 2%;
+	margin-right: 2%;
+	float: left;
+	width: 47%
+}
+
+#lr {
+	margin-right: 2%;
+	float: right;
+	width: 47%
+}
+
+.quote {
+	font-weight: bold;
+	background-color: #E1D697;
+	border: 2px gray solid;
+	padding: 8px;
+	overflow: hidden;
+}
+
+.im {
+	float: left;
+	margin-right: 5px;
+}
+
+.info {
+	font-style: italic;
+	margin-bottom: 3em;
+}
+
+.cim {
+	float: left;
+	margin-right: 5px;
+}
+
+dl {
+	margin: 0;
+	padding: 10px;
+	font-family: Arial, Helvetica, sans-serif
+}
+
+dt {
+	font-weight: bold;
+	margin-top: 1em;
+}
+
+#page {
+	float: right;
+	clear: right;
+	margin: 0;
+	padding: 5px;
+	width: 100%;
+	background-color: #A2B964;
+	text-align: center;
+}
+
+#check {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+}
